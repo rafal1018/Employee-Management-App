@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Employee Management System</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<div class="container my-2">
+    <h1>Employee Status List</h1>
+
+    <div class="btn-group" role="group" aria-label="Basic outlined example">
+        <a th:href="@{/}" class="btn btn-outline-primary">Employee list</a>
+        <a th:href="@{/new-employee-form}" class="btn btn-outline-primary">Add Employee</a>
+        <a th:href="@{/positions-list}" class="btn btn-outline-primary">Positions List</a>
+        <a th:href="@{/new-position-form}" class="btn btn-outline-primary">Add Position</a>
+        <a th:href="@{/statuses-list}" class="btn btn-outline-primary">Statuses List</a>
+        <a th:href="@{/new-status-form}" class="btn btn-outline-primary">Add Status</a>
+    </div>
+
+    <table border="1" class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>Employee Status Type</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="status : ${listOfStatutes}">
+            <td th:text="${status.statusType}"></td>
+            <td>
+                <a th:href="@{/update-status-form?id={id}(id=${status.id})}" class="btn btn-primary">Update</a>
+                <a th:href="@{/delete-status?id={id}(id=${status.id})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>
