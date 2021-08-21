@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Employee Management System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container">
+    <h1>Employee Management System</h1>
+    <hr>
+    <h2>Employee basic info</h2>
+
+    <form action="#" th:action="@{/update-employee}" th:object="${employeeDTO}" method="POST">
+
+        <input type="number" th:field="*{employeeId}" hidden="hidden">
+
+        <input type="text" th:field="*{firstName}" placeholder="Employee First Name"
+               class="form-control mb-4 col-4">
+
+        <input type="text" th:field="*{lastName}" placeholder="Employee Last Name"
+               class="form-control mb-4 col-4">
+
+        <input type="text" th:field="*{email}" placeholder="Employee Email" class="form-control mb-4 col-4">
+
+        <hr>
+        <h2>Employment details</h2>
+
+        <input type="number" th:field="*{salary}" placeholder="Employee Salary"
+               class="form-control mb-4 col-4">
+
+        <select th:field="*{position}" class="form-control mb-4 col-4">
+            <option value="" disabled selected>Choose an employee position</option>
+            <option th:each="position : ${positions}" th:value="${position}" th:text="${position}">
+            </option>
+        </select>
+
+        <select th:field="*{employmentStatus}" class="form-control mb-4 col-4">
+            <option value="">Choose an employee status</option>
+            <option th:each="status : ${statuses}" th:value="${status}" th:text="${status}">
+            </option>
+        </select>
+
+        <label for="hire-date">Hire date </label>
+        <input type="date" th:field="*{hireDate}"
+               id="hire-date" name="hire-date" class="form-control mb-4 col-4">
+
+        <label for="resignation-date">Resignation date </label>
+        <input type="date" th:field="*{resignationDate}"
+               id="resignation-date" name="resignation-date" class="form-control mb-4 col-4">
+
+        <button type="submit" class="btn btn-info col-2">Save Employee</button>
+    </form>
+
+    <hr>
+
+    <a th:href="@{/}"> Back to Employee List</a>
+</div>
+</body>
+
+</html>
