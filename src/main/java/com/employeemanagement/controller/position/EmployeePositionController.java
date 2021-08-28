@@ -5,10 +5,13 @@ import com.employeemanagement.service.EmployeePositionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.validation.Valid;
 
 @Controller
 public class EmployeePositionController {
@@ -23,7 +26,10 @@ public class EmployeePositionController {
     }
 
     @PostMapping("/save-position")
-    public String savePosition(@ModelAttribute("employeePosition") EmployeePosition employeePosition) {
+    public String savePosition(@Valid @ModelAttribute("employeePosition") EmployeePosition employeePosition, BindingResult result) {
+        if (result.hasErrors()) {
+            return "position/employeePositionForm";
+        }
         positionsService.savePosition(employeePosition);
         return "redirect:/positions-list";
     }
@@ -36,7 +42,10 @@ public class EmployeePositionController {
     }
 
     @PostMapping("/update-position")
-    public String updatePosition(@ModelAttribute("employeePosition") EmployeePosition employeePosition) {
+    public String updatePosition(@Valid @ModelAttribute("employeePosition") EmployeePosition employeePosition, BindingResult result) {
+        if (result.hasErrors()) {
+            return "position/employeePositionFormUpdate";
+        }
         positionsService.savePosition(employeePosition);
         return "redirect:/positions-list";
     }

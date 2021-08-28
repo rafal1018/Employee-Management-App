@@ -16,8 +16,11 @@
 
     <form action="#" th:action="@{/save-position}" th:object="${employeePosition}" method="POST">
 
-        <input type="text" th:field="*{positionType}" placeholder="Employee Position Type"
-               class="form-control mb-4 col-4">
+        <div class="form-group">
+            <input type="text" th:field="*{positionType}" placeholder="Employee Position Type"
+                   class="form-control mb-4 col-4">
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('positionType')}" th:errors="*{positionType}"></div>
+        </div>
 
         <button type="submit" class="btn btn-info col-2">Save Position</button>
     </form>

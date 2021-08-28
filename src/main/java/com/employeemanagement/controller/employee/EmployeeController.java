@@ -10,11 +10,13 @@ import com.employeemanagement.service.EmploymentDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -42,7 +44,11 @@ public class EmployeeController {
     }
 
     @PostMapping("/save-employee")
-    public String saveEmployee(@ModelAttribute("employeeDTO") EmployeeDTO employeeDTO) {
+    public String saveEmployee(@Valid @ModelAttribute("employeeDTO") EmployeeDTO employeeDTO, BindingResult result) {
+        if (result.hasErrors()) {
+            return "employee/employeeForm";
+        }
+
         Employee employee = employeeService.getEmployeeFromEmployeeDTO(new Employee(), employeeDTO);
 
         EmploymentDetails employmentDetails = employmentDetailsService
@@ -79,7 +85,11 @@ public class EmployeeController {
     }
 
     @PostMapping("/update-employee")
-    public String updateEmployee(@ModelAttribute("employeeDTO") EmployeeDTO employeeDTO) {
+    public String updateEmployee(@Valid @ModelAttribute("employeeDTO") EmployeeDTO employeeDTO, BindingResult result) {
+        if (result.hasErrors()){
+            return "employee/employeeUpdateForm";
+        }
+
         Employee employee = employeeService.getEmployeeFromEmployeeDTO(employeeService
                 .getEmployeeById(employeeDTO.getEmployeeId()), employeeDTO);
 

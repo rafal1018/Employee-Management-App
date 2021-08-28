@@ -16,8 +16,11 @@
 
     <form action="#" th:action="@{/save-status}" th:object="${employeeStatus}" method="POST">
 
-        <input type="text" th:field="*{statusType}" placeholder="Employee status type"
-               class="form-control mb-4 col-4">
+        <div class="form-group">
+            <input type="text" th:field="*{statusType}" placeholder="Employee status type"
+                   class="form-control mb-4 col-4">
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('statusType')}" th:errors="*{statusType}"></div>
+        </div>
 
         <button type="submit" class="btn btn-info col-2">Save status</button>
     </form>

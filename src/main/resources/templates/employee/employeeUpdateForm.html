@@ -18,39 +18,62 @@
 
         <input type="number" th:field="*{employeeId}" hidden="hidden">
 
-        <input type="text" th:field="*{firstName}" placeholder="Employee First Name"
-               class="form-control mb-4 col-4">
+        <div class="form-group">
+            <input type="text" th:field="*{firstName}" placeholder="Employee First Name"
+                   class="form-control mb-4 col-4">
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+        </div>
 
-        <input type="text" th:field="*{lastName}" placeholder="Employee Last Name"
-               class="form-control mb-4 col-4">
+        <div class="form-group">
+            <input type="text" th:field="*{lastName}" placeholder="Employee Last Name"
+                   class="form-control mb-4 col-4">
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+        </div>
 
-        <input type="text" th:field="*{email}" placeholder="Employee Email" class="form-control mb-4 col-4">
+        <div class="form-group">
+            <input type="text" th:field="*{email}" placeholder="Employee Email" class="form-control mb-4 col-4">
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        </div>
 
         <hr>
         <h2>Employment details</h2>
 
-        <input type="number" th:field="*{salary}" placeholder="Employee Salary"
-               class="form-control mb-4 col-4">
+        <div class="form-group">
+            <input type="number" th:field="*{salary}" placeholder="Employee Salary"
+                   class="form-control mb-4 col-4">
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}"></div>
+        </div>
 
-        <select th:field="*{position}" class="form-control mb-4 col-4">
-            <option value="">Choose an employee position</option>
-            <option th:each="position : ${positions}" th:value="${position.id}" th:text="${position.positionType}">
-            </option>
-        </select>
+        <div class="form-groupp">
+            <select th:field="*{position}" class="form-control mb-4 col-4">
+                <option value="">Choose an employee position</option>
+                <option th:each="position : ${positions}" th:value="${position.id}" th:text="${position.positionType}">
+                </option>
+            </select>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('position')}" th:errors="*{position}"></div>
+        </div>
 
-        <select th:field="*{employmentStatus}" class="form-control mb-4 col-4">
-            <option value="">Choose an employee status</option>
-            <option th:each="status : ${statuses}" th:value="${status.id}" th:text="${status.statusType}">
-            </option>
-        </select>
+        <div class="form-group">
+            <select th:field="*{employmentStatus}" class="form-control mb-4 col-4">
+                <option value="">Choose an employee status</option>
+                <option th:each="status : ${statuses}" th:value="${status.id}" th:text="${status.statusType}">
+                </option>
+            </select>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('employmentStatus')}" th:errors="*{employmentStatus}"></div>
+        </div>
 
-        <label for="hire-date">Hire date </label>
-        <input type="date" th:field="*{hireDate}"
-               id="hire-date" name="hire-date" class="form-control mb-4 col-4">
+        <div class="form-group">
+            <label for="hire-date">Hire date </label>
+            <input type="date" th:field="*{hireDate}"
+                   id="hire-date" name="hire-date" class="form-control mb-4 col-4">
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('hireDate')}" th:errors="*{hireDate}"></div>
+        </div>
 
-        <label for="resignation-date">Resignation date </label>
-        <input type="date" th:field="*{resignationDate}"
-               id="resignation-date" name="resignation-date" class="form-control mb-4 col-4">
+        <div class="form-group">
+            <label for="resignation-date">Resignation date </label>
+            <input type="date" th:field="*{resignationDate}"
+                   id="resignation-date" name="resignation-date" class="form-control mb-4 col-4">
+        </div>
 
         <button type="submit" class="btn btn-info col-2">Save Employee</button>
     </form>

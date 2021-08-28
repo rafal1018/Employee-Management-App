@@ -18,8 +18,11 @@
 
         <input type="number" th:field="*{id}" hidden="hidden">
 
-        <input type="text" th:field="*{positionType}" placeholder="Employee status type"
-               class="form-control mb-4 col-4">
+        <div class="form-group">
+            <input type="text" th:field="*{statusType}" placeholder="Employee status type"
+                   class="form-control mb-4 col-4">
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('statusType')}" th:errors="*{statusType}"></div>
+        </div>
 
         <button type="submit" class="btn btn-info col-2">Update status</button>
     </form>
