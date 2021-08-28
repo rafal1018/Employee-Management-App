@@ -12,6 +12,12 @@ public class EmploymentDetailsService {
     @Autowired
     private EmployeeDetailsRepository employeeDetailsRepository;
 
+    @Autowired
+    private EmployeeStatusService statusService;
+
+    @Autowired
+    private EmployeePositionService positionService;
+
     public void saveEmploymentDetails(EmploymentDetails employmentDetails) {
         employeeDetailsRepository.save(employmentDetails);
     }
@@ -23,9 +29,9 @@ public class EmploymentDetailsService {
 
     public EmploymentDetails getEmploymentDetailsFromEmployeeDTO(EmploymentDetails employmentDetails, EmployeeDTO employeeDTO) {
         employmentDetails.setSalary(employeeDTO.getSalary());
-        employmentDetails.setEmployeePosition(employeeDTO.getPosition());
+        employmentDetails.setEmployeePosition(positionService.getPositionById(employeeDTO.getPosition()));
         employmentDetails.setHireDate(employeeDTO.getHireDate());
-        employmentDetails.setEmployeeStatus(employeeDTO.getEmploymentStatus());
+        employmentDetails.setEmployeeStatus(statusService.getStatusById(employeeDTO.getEmploymentStatus()));
         employmentDetails.setResignationDate(employeeDTO.getResignationDate().isEmpty() ? null : employeeDTO.getResignationDate());
         return employmentDetails;
     }

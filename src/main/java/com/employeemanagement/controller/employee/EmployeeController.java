@@ -3,9 +3,9 @@ package com.employeemanagement.controller.employee;
 import com.employeemanagement.dto.EmployeeDTO;
 import com.employeemanagement.entity.Employee;
 import com.employeemanagement.entity.EmploymentDetails;
-import com.employeemanagement.service.EmployeePositionsService;
+import com.employeemanagement.service.EmployeePositionService;
 import com.employeemanagement.service.EmployeeService;
-import com.employeemanagement.service.EmployeeStatusesService;
+import com.employeemanagement.service.EmployeeStatusService;
 import com.employeemanagement.service.EmploymentDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,16 +28,16 @@ public class EmployeeController {
     private EmploymentDetailsService employmentDetailsService;
 
     @Autowired
-    private EmployeeStatusesService employeeStatusesService;
+    private EmployeeStatusService employeeStatusService;
 
     @Autowired
-    private EmployeePositionsService employeePositionsService;
+    private EmployeePositionService employeePositionService;
 
     @GetMapping("/new-employee-form")
     public String showNewEmployeeForm(Model model) {
         model.addAttribute("employeeDTO", new EmployeeDTO());
-        model.addAttribute("positions", employeePositionsService.getAllPositions());
-        model.addAttribute("statuses", employeeStatusesService.findAllStatuses());
+        model.addAttribute("positions", employeePositionService.getAllPositions());
+        model.addAttribute("statuses", employeeStatusService.findAllStatuses());
         return "employee/employeeForm";
     }
 
@@ -67,14 +67,14 @@ public class EmployeeController {
         employeeDTO.setEmail(employee.getEmail());
 
         employeeDTO.setSalary(employmentDetails.getSalary());
-        employeeDTO.setPosition(employmentDetails.getEmployeePosition());
+        employeeDTO.setPosition(employmentDetails.getEmployeePosition().getId());
         employeeDTO.setHireDate(employmentDetails.getHireDate());
-        employeeDTO.setEmploymentStatus(employmentDetails.getEmployeeStatus());
+        employeeDTO.setEmploymentStatus(employmentDetails.getEmployeeStatus().getId());
         employeeDTO.setResignationDate(employmentDetails.getResignationDate());
 
         model.addAttribute("employeeDTO", employeeDTO);
-        model.addAttribute("positions", getEmployeePositions());
-        model.addAttribute("statuses", getEmployeeStatuses());
+        model.addAttribute("positions", employeePositionService.getAllPositions());
+        model.addAttribute("statuses", employeeStatusService.findAllStatuses());
         return "employee/employeeUpdateForm";
     }
 

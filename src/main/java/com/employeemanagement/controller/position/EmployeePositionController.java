@@ -1,7 +1,7 @@
 package com.employeemanagement.controller.position;
 
 import com.employeemanagement.entity.EmployeePosition;
-import com.employeemanagement.service.EmployeePositionsService;
+import com.employeemanagement.service.EmployeePositionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class EmployeePositionController {
 
     @Autowired
-    private EmployeePositionsService positionsService;
+    private EmployeePositionService positionsService;
 
     @GetMapping("/new-position-form")
     public String showNewEmployeePositionForm(Model model) {

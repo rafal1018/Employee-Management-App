@@ -20,7 +20,7 @@
         <a th:href="@{/new-employee-form}" class="btn btn-outline-primary">Add Employee</a>
         <a th:href="@{/positions-list}" class="btn btn-outline-primary">Positions List</a>
         <a th:href="@{/new-position-form}" class="btn btn-outline-primary">Add Position</a>
-        <a th:href="@{/statuses-list}" class="btn btn-outline-primary">Statuses List</a>
+        <a th:href="@{/status-list}" class="btn btn-outline-primary">Statuses List</a>
         <a th:href="@{/new-status-form}" class="btn btn-outline-primary">Add Status</a>
     </div>
 
@@ -32,7 +32,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="status : ${listOfStatutes}">
+        <tr th:each="status : ${listOfStatuses}">
             <td th:text="${status.statusType}"></td>
             <td>
                 <a th:href="@{/update-status-form?id={id}(id=${status.id})}" class="btn btn-primary">Update</a>

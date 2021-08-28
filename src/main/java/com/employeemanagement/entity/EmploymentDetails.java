@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 public class EmploymentDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @Column(name = "salary")

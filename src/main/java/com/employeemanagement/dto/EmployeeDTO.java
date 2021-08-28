@@ -1,6 +1,5 @@
 package com.employeemanagement.dto;
 
-import com.employeemanagement.entity.EmployeePosition;
 import com.employeemanagement.entity.EmployeeStatus;
 import lombok.Data;
 
@@ -21,9 +20,9 @@ public class EmployeeDTO {
 
     private String hireDate;
 
-    private EmployeePosition position;
+    private Long position;
 
-    private EmployeeStatus employmentStatus;
+    private Long employmentStatus;
 
     private String resignationDate;
 

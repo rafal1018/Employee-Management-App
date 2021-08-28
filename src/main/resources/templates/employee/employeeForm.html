@@ -31,7 +31,7 @@
                class="form-control mb-4 col-4">
 
         <select th:field="*{position}" class="form-control mb-4 col-4">
-            <option value="" disabled selected>Choose an employee position</option>
+            <option value="">Choose an employee position</option>
             <option th:each="position : ${positions}" th:value="${position.id}" th:text="${position.positionType}">
             </option>
         </select>

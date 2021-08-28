@@ -1,7 +1,7 @@
 package com.employeemanagement.controller.status;
 
 import com.employeemanagement.entity.EmployeeStatus;
-import com.employeemanagement.service.EmployeeStatusesService;
+import com.employeemanagement.service.EmployeeStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class EmployeeStatusController {
 
     @Autowired
-    private EmployeeStatusesService statusService;
+    private EmployeeStatusService statusService;
 
     @GetMapping("/new-status-form")
     public String showNewEmployeeStatusForm(Model model) {
@@ -25,7 +25,7 @@ public class EmployeeStatusController {
     @PostMapping("/save-status")
     public String saveStatus(@ModelAttribute("employeeStatus") EmployeeStatus employeeStatus) {
         statusService.saveStatus(employeeStatus);
-        return "redirect:/satus-list";
+        return "redirect:/status-list";
     }
 
     @GetMapping("/update-status-form")

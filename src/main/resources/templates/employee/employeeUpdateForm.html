@@ -33,14 +33,14 @@
                class="form-control mb-4 col-4">
 
         <select th:field="*{position}" class="form-control mb-4 col-4">
-            <option value="" disabled selected>Choose an employee position</option>
-            <option th:each="position : ${positions}" th:value="${position}" th:text="${position}">
+            <option value="">Choose an employee position</option>
+            <option th:each="position : ${positions}" th:value="${position.id}" th:text="${position.positionType}">
             </option>
         </select>
 
         <select th:field="*{employmentStatus}" class="form-control mb-4 col-4">
             <option value="">Choose an employee status</option>
-            <option th:each="status : ${statuses}" th:value="${status}" th:text="${status}">
+            <option th:each="status : ${statuses}" th:value="${status.id}" th:text="${status.statusType}">
             </option>
         </select>
 
